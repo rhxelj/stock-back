@@ -1,0 +1,35 @@
+var express = require('express');
+var router = express.Router();
+var path = require('path');
+var conexion = require('./conexion');
+
+conexion.connect(function(err) {
+    if (!err) {
+        console.log("base de datos conectada stkmonedasleercod");
+    } else {
+        console.log("no se conecto stkmonedasleercod");
+    }
+});
+
+
+
+//console.log(conexion.ip);
+
+
+var router = express();
+
+router.get('/?:id', function(req, res, next) {
+    indice = req.params.id;
+    conexion.query('Select * from StkMonedas where idStkMonedas = "'  + indice + '"',
+        function(err, result) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.json(result);
+            }
+        });
+  
+
+});
+conexion.end;
+module.exports = router;
