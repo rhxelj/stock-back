@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var path = require('path');
 var conexion = require('./conexion');
-var mysql = require('mysql');
 
 var router = express();
+
+console.log('esta entrando  555');
 conexion.connect(function(err) {
     if (!err) {
         console.log("base de datos conectada sktrubro");
@@ -13,19 +13,18 @@ conexion.connect(function(err) {
     }
 });
 
+router.get('/', async function(req, res, next) {
+    idStkRubro  = req.query.id1;
+    StkRubroCodGrp = req.query.id2;
+    conexion.query('delete from StkRubro where idStkRubro = ' + idStkRubro + ' and StkRubroCodGrp = ' + StkRubroCodGrp, 
+        function(err, result) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.json(result);
+            }
+        });
+  
 
-router.delete('/?:rubro/?:grupo', function(req, res, next) {
-    idrubro = req.params.rubro;
-    idgrupo = req.params.grupo;
-
-  conexion.query('delete from StkRubro where idStkRubro = ' + idrubro + ' StkRubroCodGrp = ' + idgrupo, 
-                                         function(err, result) {
-                                            if (err) {
-                                                console.log(err);
-                                            } else {
-                                                res.json(result.rows);
-                                            }
-                                        }); 
-                                    });   
-
+});
 module.exports = router;
