@@ -14,8 +14,11 @@ conexion.connect(function(err) {
 });
 
 router.get('/', async function(req, res, next) {
-    idStkRubro  = req.query.id1;
-    StkRubroCodGrp = req.query.id2;
+    // idStkRubro  = req.query.id1;
+    // StkRubroCodGrp = req.query.id2;
+   console.log(req.query)
+    idStkRubro  = req.query.idrubro;
+    StkRubroCodGrp = req.query.idgrupo;
     conexion.query('delete from StkRubro where idStkRubro = ' + idStkRubro + ' and StkRubroCodGrp = ' + StkRubroCodGrp, 
         function(err, result) {
             if (err) {
