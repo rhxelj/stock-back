@@ -53,8 +53,8 @@ router.get('/', async function(req, res) {
         StkItemsCantidad : req.body.StkItemsCantidad,
         StkItemsFAct : req.body.StkItemsFAct,
         StkItemsMin : req.body.StkItemsMin,
-        StkItemsMax: req.body.StkItemsMax
-      
+        StkItemsMax: req.body.StkItemsMax,
+        StkItemsObserv : req.body.StkItemsObserv
       }
     }
     
@@ -67,23 +67,11 @@ router.get('/', async function(req, res) {
                 res.json(result.rows);
             
             }
-        //    return
         });
     })
 });
 
 
 
-// stkiemsinsertar.insertar(nroitem)
-
-
-   
-  // StkItemsGrupo : req.body.StkItemsDesc,
-    // StkItemsRubro : req.body.StkItemsRubro,
-    // StkItemsDesc : req.body.StkItemsDesc,
-    // StkItemsCantidad : req.body.StkItemsCantidad,
-    // StkItemsFAct : req.body.StkItemsFAct,
-    // StkItemsMin : req.body.StkItemsMin,
-    // StkItemsMax: req.body.StkItemsMax,
 
 module.exports =router;
