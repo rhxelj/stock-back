@@ -3,6 +3,8 @@ var router = express.Router();
 var path = require('path');
 var moment = require('moment');
 var conexion = require('./conexion');
+var gencodrubro = require('./stkgennrorubro');
+var ultnrorubro = require('./stkleeultnrorubro')
 
 
 moment.locale('es');
@@ -16,59 +18,37 @@ conexion.connect(function(err) {
 });
 
 
-
-router.all('/', async function(req, res) {
-   var codgrupo = req.query.id;
-    
-
-
-  conexion.query('Select StkGrupoContRubro as CuentaRubro from StkGrupo where idStkGrupo = ' + codgrupo,
-  function(err, result) {
-      if (err) {
-          console.log(err);
-      } else {
-          res.json(result);
-      
-      CuentaRubro  = result[0].CuentaRubro + 1;
-    var registro = {
-      idStkRubro :  CuentaRubro,
-      StkRubroCodGrp : codgrupo,
-      StkRubroDesc : req.body.StkRubroDesc,
-      StkRubroAbr : req.body.StkRubroAbr,
-      StkRubroProv : req.body.StkRubroProv,
-      StkRubroAncho : req.body.StkRubroAncho,
-      StkRubroPres : req.body.StkRubroPres,
-      StkRubroUM : req.body.StkRubroUM,
-      StkRubroCosto : req.body.StkRubroCosto,
-      StkRubroTM : req.body.StkRubroTM
+router.all('/', function(req, res) {
+    codgrupo = req.query.id;
+    gencodrubro.buscacodigo(codgrupo);
+    ultnrorubro.codigorubronuevo(codgrupo);
+  var registro = {
+      idStkRubro        : codrubro,
+      StkRubroCodGrp    : codgrupo,
+      StkRubroDesc      : req.body.StkRubroDesc,
+      StkRubroAbr       : req.body.StkRubroAbr,
+      StkRubroProv      : req.body.StkRubroProv,
+      StkRubroAncho     : req.body.StkRubroAncho,
+      StkRubroPres      : req.body.StkRubroPres,
+      StkRubroUM        : req.body.StkRubroUM,
+      StkRubroCosto     : req.body.StkRubroCosto,
+      StkRubroTM        : req.body.StkRubroTM
     }
-      }
-
-
-  console.log(registro)
-        conexion.query('INSERT INTO StkRubro SET ?', registro, 
+      
+    
+      conexion.query('INSERT INTO StkRubro SET ?', registro, 
         function(err, result) {
             if (err) {
-                console.log('ERROR ');
-                console.log(err);
-            } else {
-                res.json(result.rows);
-            
-            }
-        });
-
-        conexion.query('UPDATE StkGrupo SET StkGrupoContRubro = ' + CuentaRubro + ' where idStkGrupo = ' + codgrupo,
-        function(err, result) {
-            if (err) {
+                console.log('Error  INSERT INTO StkRubro')
                 console.log(err);
             } else {
                 res.json(result);
+            
             }
         });
+     
+       
 });
-});
-
-
 
 
 module.exports = router;
