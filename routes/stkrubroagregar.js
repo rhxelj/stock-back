@@ -19,6 +19,7 @@ conexion.connect(function(err) {
 
 router.all('/', async function(req, res) {
    var codgrupo = req.query.id;
+    
 
 
   conexion.query('Select StkGrupoContRubro as CuentaRubro from StkGrupo where idStkGrupo = ' + codgrupo,

@@ -20,7 +20,7 @@ var router = express();
 router.get('/', function(req, res, next) {
   
     // conexion.query('Select idStkRubro, StkRubroDesc, StkGrupo.StkGrupoDesc, StkRubroAbr, Proveedores.ProveedoresDesc, StkRubroAncho, StkRubroPres, StkRubroUM, StkRubroCosto, StkRubroTM from StkRubro JOIN BasesGenerales.StkGrupo, BasesGenerales.Proveedores where StkRubroCodGrp = idStkGrupo and StkRubroProv = idProveedores' ,
-    conexion.query('Select idStkRubro, StkRubroCodGrp,StkRubroDesc, StkGrupo.StkGrupoDesc, StkRubroAbr, Proveedores.ProveedoresDesc, StkRubroAncho, StkRubroPres, StkRubroUM, StkRubroCosto, StkRubroTM from StkRubro JOIN BasesGenerales.StkGrupo, BasesGenerales.Proveedores where StkRubroCodGrp = idStkGrupo and StkRubroProv = idProveedores' ,
+    conexion.query('Select idStkRubro, StkRubroCodGrp,StkRubroDesc, StkGrupo.StkGrupoDesc, StkRubroAbr, StkRubroProv, Proveedores.ProveedoresDesc, StkRubroAncho, StkRubroPres, StkRubroUM, StkRubroCosto, StkRubroTM from StkRubro JOIN BasesGenerales.StkGrupo, BasesGenerales.Proveedores where StkRubroCodGrp = idStkGrupo and StkRubroProv = idProveedores' ,
         function(err, result) {
             if (err) {
                 console.log(err);
