@@ -18,11 +18,8 @@ var router = express();
 
 
 
-var router = express();
-
-
-router.post('/?:id', function(req, res, next) {
- indice = req.params.id;
+router.post('/', async function(req, res, next) {
+ indice = req.query.id;
  
  descr = req.body.StkGrupoDesc;
  abrev = req.body.StkGrupoAbr;

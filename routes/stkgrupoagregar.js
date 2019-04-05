@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var path = require('path');
 var moment = require('moment');
 var conexion = require('./conexion');
+// var path = require('path');
 
 moment.locale('es');
 
@@ -20,14 +20,12 @@ conexion.connect(function(err) {
 router.post('/', function(req, res, next) {
 
   var registro = {
-  //  idStkGrupo : req.body.idStkGrupo,
+    // idStkGrupo : req.body.idStkGrupo,
     StkGrupoDesc : req.body.StkGrupoDesc,
     StkGrupoAbr : req.body.StkGrupoAbr,
     StkGrupoContRubro : req.body.StkGrupoContRubro
     
   }
- 
-   
 
         conexion.query('INSERT INTO StkGrupo SET ?', registro, 
         function(err, result) {
