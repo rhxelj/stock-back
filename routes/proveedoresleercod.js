@@ -18,10 +18,11 @@ conexion.connect(function(err) {
 
 var router = express();
 
-router.get('/?:id', function(req, res) {
-       indice = req.params.id;
-       console.log( 'indice  ' + indice);
-      conexion.query(
+router.get('/', async function(req, res) {
+       indice = req.query.id;
+
+
+       conexion.query(
         //  'SELECT idProveedores, ProveedoresDesc, ProveedoresTipo, ProveedoresCUIT, ProveedoresCalle, ProveedoresNroCalle, ProveedoresPiso, ProveedoresDto, ProveedoresCodPos, ProveedoresLoc, ProveedoresPcia, ProveedoresTel, ProveedoresContacto, ProveedoresMail, ProveedoresWeb, ProveedoresCodMon FROM BasesGenerales.Proveedores where idProveedores = ' + indice,
         'SELECT * FROM Proveedores where idProveedores = ' + indice,
         function(err, result) {
