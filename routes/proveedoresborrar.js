@@ -16,8 +16,8 @@ conexion.connect(function(err) {
 
 // router.post('/', function(req, res) {
 
-router.delete('/?:id', function(req, res) {
-    indice = req.params.id;
+router.delete('/',async function(req, res) {
+    indice = req.query.id;
   conexion.query('delete from Proveedores where idProveedores = ' + indice, 
   function(err, result) {
     if (err) {

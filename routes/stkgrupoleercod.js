@@ -17,14 +17,17 @@ conexion.connect(function(err) {
 
 var router = express();
 
-router.get('/?:id', function(req, res, next) {
-    indice = req.params.id;
+router.get('/', async function(req, res, next) {
+    indice = req.query.id;
+// router.get('/', function(req, res, next) {
+//     var  indice = req.query.id;
     conexion.query('Select * from StkGrupo  where idStkGrupo = ' + indice,
         function(err, result) {
             if (err) {
                 console.log(err);
             } else {
                 res.json(result);
+                
             }
         });
   

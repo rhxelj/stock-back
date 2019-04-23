@@ -6,15 +6,13 @@ var cors = require ('cors');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+//  var routes = require('./routes/index');
 
 var proveedoresleer = require('./routes/proveedoresleer');
 var proveedoresleercod = require('./routes/proveedoresleercod');
 var proveedoresagregar = require('./routes/proveedoresagregar');
-// var actualizaprov = require('./routes/actualizaprov');
 var proveedoresborrar = require('./routes/proveedoresborrar');
 var proveedoresmodificar = require('./routes/proveedoresmodificar');
-//var indextipoprov = require('./routes/indextipoprov');
 
 
 var stkmonedasleer = require('./routes/stkmonedasleer');
@@ -35,11 +33,6 @@ var stkunmedagregar = require('./routes/stkunmedagregar');
 var stkunmedmodificar = require('./routes/stkunmedmodificar');
 var stkunmedborrar = require('./routes/stkunmedborrar');
 
-// var leerrubromerc = require('./routes/leerrubromerc');
-// var agregarrubromerc = require('./routes/agregarrubromerc');
-// var modificarrubromerc = require('./routes/modificarrubromerc');
-// var borrarrubromerc = require('./routes/borrarrubromerc');
-
 var stkgrupoleer = require('./routes/stkgrupoleer');
 var stkgrupoleercod = require('./routes/stkgrupoleercod');
 var stkgrupoagregar = require('./routes/stkgrupoagregar');
@@ -55,6 +48,7 @@ var stkrubroborrar = require('./routes/stkrubroborrar');
 var stkrubroleecodgrupo = require('./routes/stkrubroleecodgrupo');
 var stkrubroleecodgryrb = require('./routes/stkrubroleecodgryrb');
 
+
 var stkitemsleer = require('./routes/stkitemsleer');
 var stkitemsagregar = require('./routes/stkitemsagregar');
 var stkitemsmodificar = require('./routes/stkitemsmodificar');
@@ -62,7 +56,12 @@ var stkitemsborrar = require('./routes/stkitemsborrar');
 var stkitemsleecod = require('./routes/stkitemsleecod');
 var stkitemsleecodgryrb = require('./routes/stkitemsleecodgryrb');
 var stkitemsleecodgrrbit = require('./routes/stkitemsleecodgrrbit');
+var stkitemsleedetalles = require('./routes/stkitemsleedetalles');
 var stkitemsmodificacant = require('./routes/stkitemsmodificacant');
+
+
+// var imprime1 = require('./routes/imprime1');
+
 
 
 // function agregada por el error CROS
@@ -78,6 +77,7 @@ function perimitirCrossDomain(req, res, next) {
 
 var app = express();
 app.use(cors());
+// routes.initialize(app);
 
 // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
@@ -93,7 +93,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(perimitirCrossDomain);
 
 
-
 app.use('/', proveedoresleer);
 
 app.use('/proveedoresleer', proveedoresleer);
@@ -102,17 +101,11 @@ app.use('/proveedoresagregar', proveedoresagregar);
 app.use('/proveedoresmodificar', proveedoresmodificar);
 app.use('/proveedoresborrar', proveedoresborrar);
 
-
-
-
 app.use('/stkmonedasleer', stkmonedasleer);
 app.use('/stkmonedasleercod', stkmonedasleercod);
 app.use('/stkmonedasagregar', stkmonedasagregar);
 app.use('/stkmonedasmodificar', stkmonedasmodificar);
 app.use('/stkmonedasborrar', stkmonedasborrar);
-
-
-
 
 app.use('/stktipoproveedleer', stktipoproveedleer);
 app.use('/stktipoproveedleercod', stktipoproveedleercod);
@@ -120,18 +113,11 @@ app.use('/stktipoproveedagregar', stktipoproveedagregar);
 app.use('/stktipoproveedmodificar', stktipoproveedmodificar);
 app.use('/stktipoproveedborrar', stktipoproveedborrar);
 
-
 app.use('/stkunmedleer', stkunmedleer);
 app.use('/stkunmedleercod', stkunmedleercod);
 app.use('/stkunmedagregar', stkunmedagregar);
 app.use('/stkunmedmodificar', stkunmedmodificar);
 app.use('/stkunmedborrar', stkunmedborrar);
-
-
-// app.use('/leerrubromerc', leerrubromerc);
-// app.use('/agregarrubromerc', agregarrubromerc);
-// app.use('/modificarrubromerc', modificarrubromerc);
-// app.use('/borrarrubromerc', borrarrubromerc);
 
 app.use('/stkgrupoleer', stkgrupoleer);
 app.use('/stkgrupoleercod', stkgrupoleercod);
@@ -156,7 +142,11 @@ app.use('/stkitemsborrar', stkitemsborrar);
 app.use('/stkitemsleecod', stkitemsleecod);
 app.use('/stkitemsleecodgryrb', stkitemsleecodgryrb);
 app.use('/stkitemsleecodgrrbit', stkitemsleecodgrrbit);
+app.use('/stkitemsleedetalles', stkitemsleedetalles);
 app.use('/stkitemsmodificacant', stkitemsmodificacant);
+
+// app.use('/imprime1', imprime1);
+
 
 app.use(function(req, res, next) {
     var err = new Error('Not Found');

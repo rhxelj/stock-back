@@ -29,6 +29,7 @@ router.all('/', function(req, res) {
       StkRubroAbr       : req.body.StkRubroAbr,
       StkRubroProv      : req.body.StkRubroProv,
       StkRubroAncho     : req.body.StkRubroAncho,
+      StkRubroPresDes   : req.body.StkRubroPresDes,
       StkRubroPres      : req.body.StkRubroPres,
       StkRubroUM        : req.body.StkRubroUM,
       StkRubroCosto     : req.body.StkRubroCosto,
