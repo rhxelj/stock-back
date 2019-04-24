@@ -6,9 +6,9 @@ var conexion = require('./conexion');
 
 conexion.connect(function(err) {
     if (!err) {
-        console.log("base de datos conectada");
+        console.log("base de datos conectada en stkitemsmodificar");
     } else {
-        console.log("no se conecto");
+        console.log("no se conecto en stkitemsmodificar");
     }
 });
 
@@ -27,7 +27,7 @@ router.post('/', async function(req, res, next) {
 var idStkItems = req.query.id1;
 var StkItemsGrupo = req.query.id2;
 var StkItemsRubro = req.query.id3;
-var StkItemsDesc = req.body.StkItemsDesc;
+var StkItemsDesc = req.body.StkItemsDesc.toUpperCase();
 var StkItemsCantidad = req.body.StkItemsCantidad;
 var StkItemsFAct = req.body.StkItemsFAct;
 var StkItemsMin = req.body.StkItemsMin;

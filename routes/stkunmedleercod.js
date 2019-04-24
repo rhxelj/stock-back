@@ -5,9 +5,9 @@ var conexion = require('./conexion');
 
 conexion.connect(function(err) {
     if (!err) {
-        console.log("base de datos conectada StkUnMed");
+        console.log("base de datos conectada en stkunmedleercod");
     } else {
-        console.log("no se conecto StkUnMed");
+        console.log("no se conecto en stkunmedleercod");
     }
 });
 

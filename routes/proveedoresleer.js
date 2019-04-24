@@ -5,11 +5,12 @@ var conexion = require('./conexion');
 
 
 
+
 conexion.connect(function(err) {
     if (!err) {
-        console.log("base de datos conectada en leerproveedor");
+        console.log("base de datos conectada en proveedoresleer");
     } else {
-        console.log("no se conecto en leerproveedor");
+        console.log("no se conecto en proveedoresleer");
     }
 });
 

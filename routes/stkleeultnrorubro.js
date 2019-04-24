@@ -8,12 +8,11 @@ moment.locale('es');
 
 conexion.connect(function(err) {
     if (!err) {
-        console.log("base de datos conectada en stkrubro");
+        console.log("base de datos conectada en stkleeultnrorubro");
     } else {
-        console.log("no se conecto");
+        console.log("no se conecto en stkleeultnrorubro");
     }
 });
-
 
 function codigorubronuevo(codigogen) {
    conexion.query('Select StkGrupoContRubro as CuentaRubro from StkGrupo where idStkGrupo = ' + codigogen,

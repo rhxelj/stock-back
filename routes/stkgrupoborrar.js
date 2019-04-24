@@ -7,9 +7,9 @@ var mysql = require('mysql');
 var router = express();
 conexion.connect(function(err) {
     if (!err) {
-        console.log("base de datos conectada en stkgrupo");
+        console.log("base de datos conectada en stkgrupoborrar");
     } else {
-        console.log("no se conecto en stkgrupo");
+        console.log("no se conecto en stkgrupoborrar");
     }
 });
 
@@ -23,7 +23,7 @@ router.delete('/?:id', function(req, res, next) {
                                             if (err) {
                                                 if (err.errno == 1451) 
                                                     {
-                                                      return res.status(411).send({message : "error Código de moneda usado en otra tabla"});
+                                                      return res.status(411).send({message : "error Código de Grupo usado en otra tabla"});
                                                      }
                                                   {
                                                 console.log(err);

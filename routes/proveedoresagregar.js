@@ -12,9 +12,9 @@ moment.locale('es');
 //router = express();
 conexion.connect(function(err) {
     if (!err) {
-        console.log("base de datos conectada en agregarproveedor");
+        console.log("base de datos conectada en proveedoresagregar");
     } else {
-        console.log("no se conecto en agregarproveedor");
+        console.log("no se conecto en proveedoresagregar");
     }
 });
 
@@ -46,9 +46,15 @@ router.post('/', function(req, res) {
         conexion.query('INSERT INTO Proveedores SET ?', registro, 
         function(err, result) {
             if (err) {
-                console.log('ERROR ');
-                console.log(err);
-            } else {
+                if (err.errno == 1062) 
+                {
+                    return res.status(409).send({message : "error clave duplicada"});
+                   }
+             else 
+               {
+                   console.log (err.errno);
+               }
+           } else {
                 res.json(result.rows);
             
             }

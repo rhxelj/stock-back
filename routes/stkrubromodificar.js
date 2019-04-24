@@ -6,54 +6,56 @@ var conexion = require('./conexion');
 
 conexion.connect(function(err) {
     if (!err) {
-        console.log("base de datos conectada");
+        console.log("base de datos conectada en stkrubromodificar");
     } else {
-        console.log("no se conecto");
+        console.log("no se conecto en stkrubromodificar");
     }
 });
 
-/*
-idStkRubro
-*/
 
 var router = express();
 
 
 
 router.post('/', async function(req, res, next) {
- //?:id/?:id2
-  //  console.log('req.params.id  ' + req.query.id1 +  '   req.params.id2    ' + req.query.id2);
 
 var idStkRubro = req.query.id;
 var StkRubroCodGrp = req.query.id2;
-var StkRubroDesc = req.body.StkRubroDesc;
-var StkRubroAbr = req.body.StkRubroAbr;
+var StkRubroDesc = req.body.StkRubroDesc.toUpperCase();
+var StkRubroAbr = req.body.StkRubroAbr.toUpperCase();
 var StkRubroProv = req.body.StkRubroProv;
 var StkRubroAncho = req.body.StkRubroAncho;
-var StkRubroPresDes = req.body.StkRubroPresDes;
+var StkRubroPresDes = req.body.StkRubroPresDes.toUpperCase();
 var StkRubroPres = req.body.StkRubroPres;
 var StkRubroUM = req.body.StkRubroUM;
 var StkRubroCosto = req.body.StkRubroCosto;
 var StkRubroTM = req.body.StkRubroTM;
 
-
- 
-   // conexion.query('Select * from TipoMonedas where idTipoMonedas = "' + indice + '"',
     conexion.query('UPDATE StkRubro SET StkRubroDesc = "' + StkRubroDesc +
                                      '", StkRubroAbr = "' + StkRubroAbr + 
                                      '", StkRubroProv = '+ StkRubroProv + 
                                      ', StkRubroAncho = '+ StkRubroAncho + 
-                                     ', StkRubroPresDes = "'+ StkRubroPresDes +
-                                     '", StkRubroPres = '+ StkRubroPres +
-                                     ', StkRubroUM = "'+ StkRubroUM +
+                                     ', StkRubroPresDes = "' + StkRubroPresDes +
+                                     '", StkRubroPres = ' + StkRubroPres +
+                                     ', StkRubroUM = "' + StkRubroUM +
                                      '", StkRubroCosto = '+ StkRubroCosto +
                                      ', StkRubroTM = "'+ StkRubroTM + 
-
                                      '" WHERE idStkRubro = ' + idStkRubro + ' and  StkRubroCodGrp = ' + StkRubroCodGrp,
         function(err, result) {
             if (err) {
-                console.log(err);
-            } else {
+                if (err.errno == 1062) 
+                     {
+                         return res.status(460).send({message : "error clave duplicada"});
+                        }
+                  else 
+                  if (err.errno == 1406 || err.errno == 1264) 
+                     {
+                         return res.status(410).send({message : "Texto demasiado largo"});
+                        }
+                    {
+                        console.log (err.errno);
+                    }
+                } else {
                 res.json(result);
                 };
             });

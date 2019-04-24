@@ -6,9 +6,9 @@ var conexion = require('./conexion');
 
 conexion.connect(function(err) {
     if (!err) {
-        console.log("base de datos stktipoproveedleercod");
+        console.log("base de datos en stktipoproveedleercod");
     } else {
-        console.log("no se stktipoproveedleercod");
+        console.log("no se conecto en stktipoproveedleercod");
     }
 });
 

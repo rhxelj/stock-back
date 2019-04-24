@@ -6,9 +6,9 @@ var conexion = require('./conexion');
 
 conexion.connect(function(err) {
     if (!err) {
-        console.log("base de datos conectada");
+        console.log("base de datos conectada en stkmonedasmodificar");
     } else {
-        console.log("no se conecto");
+        console.log("no se conecto en stkmonedasmodificar");
     }
 });
 
@@ -19,13 +19,12 @@ var router = express();
 
 
 var router = express();
-console.log('estamos aca');
 
 router.post('/?:id', function(req, res, next) {
 let indice = " ";
 indice = req.params.id;
 
- descr = req.body.StkMonedasDescripcion;
+ descr = req.body.StkMonedasDescripcion.toUpperCase();
  cotiz = req.body.StkMonedasCotizacion;
 
    conexion.query ('UPDATE StkMonedas SET StkMonedasDescripcion = "' + descr + '", StkMonedasCotizacion = ' + cotiz + ' WHERE idStkMonedas = "' + indice + '"',

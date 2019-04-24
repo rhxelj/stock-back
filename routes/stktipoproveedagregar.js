@@ -10,9 +10,9 @@ moment.locale('es');
 //router = express();
 conexion.connect(function(err) {
     if (!err) {
-        console.log("base de datos conectada en stktipoproveed");
+        console.log("base de datos conectada en stktipoproveedagregar");
     } else {
-        console.log("no se conecto");
+        console.log("no se conecto en stktipoproveedagregar");
     }
 });
 
@@ -21,8 +21,8 @@ conexion.connect(function(err) {
 router.post('/', function(req, res) {
 
   var registro = {
-    idStkTipoProveed : req.body.idStkTipoProveed,
-    StkTipoProveedDesc : req.body.StkTipoProveedDesc,
+//    idStkTipoProveed : req.body.idStkTipoProveed,
+    StkTipoProveedDesc : req.body.StkTipoProveedDesc.toUpperCase(),
    
 
   }
@@ -34,11 +34,21 @@ router.post('/', function(req, res) {
         conexion.query('INSERT INTO StkTipoProveed SET ?', registro, 
         function(err, result) {
             if (err) {
-                console.log('ERROR ');
-                console.log(err);
-            } else {
+                if (err.errno == 1062) 
+                     {
+                        return res.status(409).send({message : "error clave duplicada"});
+                    }
+                else
+                if (err.errno == 1406 || err.errno == 1264) 
+                {
+                    return res.status(410).send({message : "Texto demasiado largo"});
+                   }
+               {
+                   console.log (err.errno);
+               }
+        }
+            else {
                 res.json(result.rows);
-            
             }
         });
 });

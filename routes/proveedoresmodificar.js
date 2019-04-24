@@ -7,9 +7,9 @@ var conexion = require('./conexion');
 //var router = express();
 conexion.connect(function(err) {
     if (!err) {
-        console.log("base de datos conectada en modificarproveedor");
+        console.log("base de datos conectada en proveedoresmodificar");
     } else {
-        console.log("no se conecto en modificarproveedor");
+        console.log("no se conecto en proveedoresmodificar");
     }
 });
 var router = express();
@@ -18,7 +18,6 @@ var router = express();
 router.post('/?:id', function(req, res) {
     //indice = req.params.id;
     indice = req.params.id;
-   
     var provdesc = req.body.ProveedoresDesc;
 
     var provtipo =  req.body.ProveedoresTipo;
@@ -29,7 +28,7 @@ router.post('/?:id', function(req, res) {
   
     var provnrocalle = req.body.ProveedoresNroCalle;
  
-    var provpiso = req.body. ProveedoresPiso;
+    var provpiso = req.body.ProveedoresPiso;
    
     var provdto = req.body.ProveedoresDto;
 
@@ -48,7 +47,6 @@ router.post('/?:id', function(req, res) {
     var provpagweb = req.body.ProveedoresWeb;
 
     var provcodmon = req.body.ProveedoresCodMon;
-    // req.body.ProveedoresCodMon;
     
   conexion.query('update Proveedores set ProveedoresDesc = "' + provdesc + 
                                         '" , ProveedoresTipo = ' + provtipo + 
@@ -67,9 +65,16 @@ router.post('/?:id', function(req, res) {
                                         '" , ProveedoresCodMon = "' + provcodmon + 
                                          '" where idProveedores = ' + indice, 
                                          function(err, result) {
-                                            if (err) {
-                                                console.log(err);
-                                            } else {
+                                            if (err) 
+                                             {
+                                            if (err.errno == 1062) 
+                                                 {
+                                            return res.status(409).send({message : "error clave duplicada"});
+                                                }
+                                            else {
+                                                console.log(err.errno);
+                                            }}
+                                             else {
                                                 res.json(result.rows);
                                             }
                                         }); 

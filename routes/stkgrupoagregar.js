@@ -1,17 +1,16 @@
 var express = require('express');
 var router = express.Router();
+var path = require('path');
 var moment = require('moment');
 var conexion = require('./conexion');
-// var path = require('path');
 
 moment.locale('es');
 
-//router = express();
 conexion.connect(function(err) {
     if (!err) {
-        console.log("base de datos conectada en stkgrupo");
+        console.log("base de datos conectada en stkrupoagregar");
     } else {
-        console.log("no se conecto en stkgrupo");
+        console.log("no se conecto en stkrupoagregar");
     }
 });
 
@@ -20,12 +19,13 @@ conexion.connect(function(err) {
 router.post('/', function(req, res, next) {
 
   var registro = {
-    // idStkGrupo : req.body.idStkGrupo,
-    StkGrupoDesc : req.body.StkGrupoDesc,
-    StkGrupoAbr : req.body.StkGrupoAbr,
-    StkGrupoContRubro : req.body.StkGrupoContRubro
+    StkGrupoDesc : req.body.StkGrupoDesc.toUpperCase(),
+    StkGrupoAbr : req.body.StkGrupoAbr.toUpperCase(),
+    StkGrupoContRubro : 0
     
   }
+ 
+   
 
         conexion.query('INSERT INTO StkGrupo SET ?', registro, 
         function(err, result) {
@@ -44,12 +44,5 @@ router.post('/', function(req, res, next) {
 });
 
 
-/* router.use((req, res, next) => {
-    res.status(404);
-    res.json({
-      error: 'Error. Route not found'
-    });
-  });
- */
 
 module.exports = router;

@@ -6,9 +6,9 @@ var conexion = require('./conexion');
 
 conexion.connect(function(err) {
     if (!err) {
-        console.log("base de datos conectada StkUnMed");
+        console.log("base de datos conectada en stkunmedmodificar");
     } else {
-        console.log("no se conecto en StkUnMed");
+        console.log("no se conecto en stkunmedmodificar");
     }
 });
 
@@ -24,19 +24,26 @@ router.post('/?:id', function(req, res, next) {
 let indice = " ";
 indice = req.params.id;
 
- descr = req.body.StkUnMedDesc;
+ descr = req.body.StkUnMedDesc.toUpperCase();
  
  conexion.query ('UPDATE StkUnMed SET StkUnMedDesc = "' + descr + '" WHERE idStkUnMed = "' + indice + '"',
 
         function(err, result) {
-            if (err) {
-                    if (err.errno == 1406) 
-                        {
-                        return res.status(410).send({message : "El campo alfanumérico dígitos de los que corresponde"});
-                        }
-                    else
-                    console.log(err);
-                }
+            if (err)  {
+                if (err.errno == 1062) 
+                   {
+               return res.status(409).send({message : "error clave duplicada"});
+                   }
+               else
+                if (err.errno == 1406 || err.errno == 1264) 
+                   {
+                    return res.status(410).send({message : "Texto demasiado largo"});
+                   }
+               else
+                   {
+                       console.log (err.errno);
+                   }
+               }
             
             else {
                 res.json(result);

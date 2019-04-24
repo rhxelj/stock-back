@@ -6,9 +6,9 @@ var conexion = require('./conexion');
 
 conexion.connect(function(err) {
     if (!err) {
-        console.log("base de datos conectada");
+        console.log("base de datos en stkitemsleecodgrrbit");
     } else {
-        console.log("no se conecto");
+        console.log("no se conecto en stkitemsleecodgrrbit");
     }
 });
 
@@ -22,7 +22,6 @@ router.get('/', async function(req, res, next) {
     var StkItemsGrupo = req.query.id2;
     var StkItemsRubro = req.query.id3;
     
-    console.log('req.query.id1; '+req.query.id1+' req.query.id2; '+ req.query.id2 + 'req.query.id3  '+req.query.id3)
     conexion.query('Select * from StkItems where idStkItems  = ' + idStkItems  + ' and StkItemsGrupo  = ' + StkItemsGrupo  + ' and  StkItemsRubro  = ' + StkItemsRubro, 
         function(err, result) {
             if (err) {

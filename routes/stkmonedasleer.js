@@ -5,15 +5,11 @@ var conexion = require('./conexion');
 
 conexion.connect(function(err) {
     if (!err) {
-        console.log("base de datos conectada leermonedas");
+        console.log("base de datos conectada en stkmonedasleer");
     } else {
-        console.log("no se conecto leermonedas");
+        console.log("no se conecto en stkmonedasleer");
     }
 });
-
-
-
-//console.log(conexion.ip);
 
 
 var router = express();
@@ -23,7 +19,7 @@ router.get('/', function(req, res, next) {
     conexion.query('Select * from StkMonedas ' ,
         function(err, result) {
             if (err) {
-                console.log(err);
+                console.log(err.errno);
             } else {
                 res.json(result);
             }

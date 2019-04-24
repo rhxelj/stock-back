@@ -5,15 +5,11 @@ var conexion = require('./conexion');
 
 conexion.connect(function(err) {
     if (!err) {
-        console.log("base de datos conectada stkmonedasleercod");
+        console.log("base de datos conectada en stkmonedasleercod");
     } else {
-        console.log("no se conecto stkmonedasleercod");
+        console.log("no se conecto en stkmonedasleercod");
     }
 });
-
-
-
-//console.log(conexion.ip);
 
 
 var router = express();

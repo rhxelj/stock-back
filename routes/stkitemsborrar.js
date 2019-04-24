@@ -7,9 +7,9 @@ var mysql = require('mysql');
 var router = express();
 conexion.connect(function(err) {
     if (!err) {
-        console.log("base de datos conectada sktrubro");
+        console.log("base de datos conectada en stkitemsborrar");
     } else {
-        console.log("no se conecto sktrubro");
+        console.log("no se conecto en stkitemsborrar");
     }
 });
 

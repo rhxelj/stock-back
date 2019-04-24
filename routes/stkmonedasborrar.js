@@ -7,12 +7,11 @@ var mysql = require('mysql');
 var router = express();
 conexion.connect(function(err) {
     if (!err) {
-        console.log("base de datos conectada");
+        console.log("base de datos conectada en stkmonedasborrar");
     } else {
-        console.log("no se conecto");
+        console.log("no se conecto en stkmonedasborrar");
     }
 });
-
 
 router.delete('/?:id', function(req, res, next) {
     indice = req.params.id;

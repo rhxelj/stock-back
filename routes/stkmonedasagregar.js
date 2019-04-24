@@ -10,9 +10,9 @@ moment.locale('es');
 //router = express();
 conexion.connect(function(err) {
     if (!err) {
-        console.log("base de datos conectada en monedas");
+        console.log("base de datos conectada en stkmonedasagregar");
     } else {
-        console.log("no se conecto en monedas");
+        console.log("no se conecto en stkmonedasagregar");
     }
 });
 
@@ -22,7 +22,7 @@ router.post('/', function(req, res, next) {
 
   var registro = {
     idStkMonedas  : req.body.idStkMonedas ,
-    StkMonedasDescripcion : req.body.StkMonedasDescripcion,
+    StkMonedasDescripcion : req.body.StkMonedasDescripcion.toUpperCase(),
     StkMonedasCotizacion : req.body.StkMonedasCotizacion
 
   }

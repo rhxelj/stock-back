@@ -6,9 +6,9 @@ var conexion = require('./conexion');
 
 conexion.connect(function(err) {
     if (!err) {
-        console.log("base de datos conectada");
+        console.log("base de datos conectada en stkgrupomodificar");
     } else {
-        console.log("no se conecto");
+        console.log("no se conecto en stkgrupomodificar");
     }
 });
 
@@ -21,13 +21,12 @@ var router = express();
 router.post('/', async function(req, res, next) {
  indice = req.query.id;
  
- descr = req.body.StkGrupoDesc;
+ descr = req.body.StkGrupoDesc.toUpperCase();
  abrev = req.body.StkGrupoAbr;
  contRubro = req.body.StkGrupoContRubro;
  
  
 console.log('indice  ', indice);
-   // conexion.query('Select * from TipoMonedas where idTipoMonedas = "' + indice + '"',
     conexion.query('UPDATE StkGrupo SET StkGrupoDesc = "' + descr + '", StkGrupoAbr = "' + abrev + '", StkGrupoContRubro = '+ contRubro + ' WHERE idStkGrupo = "' + indice + '"',
         function(err, result) {
             if (err) {

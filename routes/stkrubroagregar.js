@@ -11,12 +11,11 @@ moment.locale('es');
 
 conexion.connect(function(err) {
     if (!err) {
-        console.log("base de datos conectada en stkrubro");
+        console.log("base de datos conectada en stkrubroagregar");
     } else {
-        console.log("no se conecto");
+        console.log("no se conecto en stkrubroagregar");
     }
 });
-
 
 router.all('/', function(req, res) {
     codgrupo = req.query.id;
@@ -25,26 +24,34 @@ router.all('/', function(req, res) {
   var registro = {
       idStkRubro        : codrubro,
       StkRubroCodGrp    : codgrupo,
-      StkRubroDesc      : req.body.StkRubroDesc,
-      StkRubroAbr       : req.body.StkRubroAbr,
-      StkRubroProv      : req.body.StkRubroProv,
+      StkRubroDesc      : req.body.StkRubroDesc.toUpperCase(),
+      StkRubroAbr       : req.body.StkRubroAbr.toUpperCase(),
+      StkRubroProv      : req.body.StkRubroProv.toUpperCase(),
       StkRubroAncho     : req.body.StkRubroAncho,
-      StkRubroPresDes   : req.body.StkRubroPresDes,
+      StkRubroPresDes   : req.body.StkRubroPresDes.toUpperCase(),
       StkRubroPres      : req.body.StkRubroPres,
       StkRubroUM        : req.body.StkRubroUM,
       StkRubroCosto     : req.body.StkRubroCosto,
       StkRubroTM        : req.body.StkRubroTM
     }
-      
-    
       conexion.query('INSERT INTO StkRubro SET ?', registro, 
         function(err, result) {
             if (err) {
-                console.log('Error  INSERT INTO StkRubro')
-                console.log(err);
-            } else {
+                if (err.errno == 1062) 
+                     {
+                         return res.status(460).send({message : "error clave duplicada"});
+                        }
+                  else 
+                  if (err.errno == 1406 || err.errno == 1264) 
+                     {
+                         return res.status(410).send({message : "Abreviatura con más de cinco letras"});
+                        }
+                    {
+                        console.log (err.errno);
+                    }
+                }
+            else {
                 res.json(result);
-            
             }
         });
      
