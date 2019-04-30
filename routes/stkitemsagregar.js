@@ -21,7 +21,7 @@ conexion.connect(function(err) {
 //SELECT max(idStkItems) FROM BasesGenerales.StkItems  where StkItemsRubro = 10 and StkItemsGrupo = 1;
 //select hecho en mysql para buscar el item más grande y agregar 1
 
-router.get('/', async function(req, res) {
+    router.post('/', async function(req, res) {
     var StkItemsGrupo = req.query.id2;
     var StkItemsRubro = req.query.id3;
  
@@ -41,17 +41,20 @@ router.get('/', async function(req, res) {
       nroitem = result[0].UltItem + 1;
      }
 
-     console.log('nroitem   ' + nroitem);
+     var d = new Date()
+     finalDate = d.toISOString().split('T')[0]+' '+d.toTimeString().split(' ')[0];
+
       var registro = {
         idStkItems : nroitem,
         StkItemsGrupo : StkItemsGrupo,
         StkItemsRubro : StkItemsRubro,
         StkItemsDesc : req.body.StkItemsDesc.toUpperCase(),
         StkItemsCantidad : req.body.StkItemsCantidad,
-        StkItemsFAct : req.body.StkItemsFAct,
+        StkItemsCantDisp : req.body.StkItemsCantidad,
+        StkItemsFAct : finalDate,
         StkItemsMin : req.body.StkItemsMin,
         StkItemsMax: req.body.StkItemsMax,
-        StkItemsObserv : req.body.StkItemsObserv
+        // StkItemsObserv : req.body.StkItemsObserv
       
     }
     
@@ -59,7 +62,7 @@ router.get('/', async function(req, res) {
         function(err, result) {
             if (err) {
                 console.log('ERROR ');
-                console.log(err);
+                console.log(err.errno);
             } else {
                 res.json(result.rows);
             

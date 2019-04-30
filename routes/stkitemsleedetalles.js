@@ -19,7 +19,7 @@ var router = express();
 
 router.get('/', async function(req, res, next) {
    
-conexion.query('select idStkItems, StkGrupo.StkGrupoDesc, StkRubro.StkRubroDesc, StkItemsDesc, StkItemsCantidad,   date_format(StkItemsFAct, "%d-%m-%Y") as StkItemsFAct , StkItemsMin, StkItemsMax, StkItemsObserv from StkItems, StkGrupo, StkRubro where (StkItems.StkItemsGrupo = StkGrupo.idStkGrupo) and (StkItems.StkItemsRubro = StkRubro.idStkRubro) and (StkRubro.StkRubroCodGrp = StkGrupo.idStkGrupo)',
+conexion.query('select idStkItems, StkItemsGrupo, StkGrupo.StkGrupoDesc, StkItemsRubro, StkRubro.StkRubroDesc, StkItemsDesc, StkItemsCantidad,   date_format(StkItemsFAct, "%d-%m-%Y") as StkItemsFAct , StkItemsMin, StkItemsMax from StkItems, StkGrupo, StkRubro where (StkItems.StkItemsGrupo = StkGrupo.idStkGrupo) and (StkItems.StkItemsRubro = StkRubro.idStkRubro) and (StkRubro.StkRubroCodGrp = StkGrupo.idStkGrupo)',
   //  conexion.query('Select idStkItems, StkGrupo.StkGrupoDesc, StkRubro.StkRubroDesc, StkItemsDesc, StkItemsCantidad, StkItemsFAct, StkItemsMin,StkItemsMax,StkItemsObserv  from StkItems, StkGrupo, StkRubro where StkItemsGrupo = StkGrupo.idStkGrupo and StkItemsRubro = StkRubro.idStkRubro',
         function(err, result) {
             if (err) {
