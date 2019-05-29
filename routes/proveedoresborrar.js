@@ -17,7 +17,7 @@ conexion.connect(function(err) {
 router.delete('/', async function(req, res) {
  indice = req.query.id;
 
-  conexion.query('delete from Proveedores where idProveedores = ' + indice, 
+  conexion.query('delete from BasesGenerales.Proveedores where idProveedores = ' + indice, 
   function(err, result) {
     if (err) {
         if (err.errno == 1451) 

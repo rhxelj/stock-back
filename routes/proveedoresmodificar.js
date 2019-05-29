@@ -48,7 +48,7 @@ router.post('/?:id', function(req, res) {
 
     var provcodmon = req.body.ProveedoresCodMon;
     
-  conexion.query('update Proveedores set ProveedoresDesc = "' + provdesc + 
+  conexion.query('update BasesGenerales.Proveedores set ProveedoresDesc = "' + provdesc + 
                                         '" , ProveedoresTipo = ' + provtipo + 
                                         ' ,  ProveedoresCUIT = "' + provcuit + 
                                         '" , ProveedoresCalle = "' + provcalle + 

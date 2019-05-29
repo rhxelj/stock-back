@@ -6,10 +6,11 @@ var conexion = mysql.createConnection({
     user: 'root',
     password: 'MySQL!!!',
     host: 'localhost',
-    database: 'BasesGenerales'
+    database: 'BaseStock',
+    port: 3306
 });
 
-var ip = 'localhost';
+//var ip = 'localhost';
 
 module.exports = conexion;
 

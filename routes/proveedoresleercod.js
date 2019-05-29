@@ -24,7 +24,7 @@ router.get('/', async function(req, res) {
 
        conexion.query(
         //  'SELECT idProveedores, ProveedoresDesc, ProveedoresTipo, ProveedoresCUIT, ProveedoresCalle, ProveedoresNroCalle, ProveedoresPiso, ProveedoresDto, ProveedoresCodPos, ProveedoresLoc, ProveedoresPcia, ProveedoresTel, ProveedoresContacto, ProveedoresMail, ProveedoresWeb, ProveedoresCodMon FROM BasesGenerales.Proveedores where idProveedores = ' + indice,
-        'SELECT * FROM Proveedores where idProveedores = ' + indice,
+        'SELECT * FROM BasesGenerales.Proveedores where idProveedores = ' + indice,
         function(err, result) {
             if (err) {
                 console.log(err);

@@ -43,7 +43,7 @@ router.post('/', function(req, res) {
 
 
 
-        conexion.query('INSERT INTO Proveedores SET ?', registro, 
+        conexion.query('INSERT INTO BasesGenerales.Proveedores SET ?', registro, 
         function(err, result) {
             if (err) {
                 if (err.errno == 1062) 

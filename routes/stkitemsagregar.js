@@ -21,7 +21,7 @@ conexion.connect(function(err) {
 //SELECT max(idStkItems) FROM BasesGenerales.StkItems  where StkItemsRubro = 10 and StkItemsGrupo = 1;
 //select hecho en mysql para buscar el item más grande y agregar 1
 
-    router.post('/', async function(req, res) {
+router.post('/', async function(req, res) {
     var StkItemsGrupo = req.query.id2;
     var StkItemsRubro = req.query.id3;
  
@@ -54,10 +54,8 @@ conexion.connect(function(err) {
         StkItemsFAct : finalDate,
         StkItemsMin : req.body.StkItemsMin,
         StkItemsMax: req.body.StkItemsMax,
-        // StkItemsObserv : req.body.StkItemsObserv
       
     }
-    
     conexion.query('INSERT INTO StkItems SET ?', registro, 
         function(err, result) {
             if (err) {

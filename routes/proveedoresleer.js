@@ -22,7 +22,7 @@ var router = express();
 router.get('/', function(req, res, next) {
 
       conexion.query(
-          'SELECT idProveedores, ProveedoresDesc, StkTipoProveed.StkTipoProveedDesc, ProveedoresTipo, ProveedoresCUIT, ProveedoresCalle, ProveedoresNroCalle, ProveedoresPiso, ProveedoresDto, ProveedoresCodPos, ProveedoresLoc, ProveedoresPcia, ProveedoresTel, ProveedoresContacto, ProveedoresMail, ProveedoresWeb, ProveedoresCodMon FROM BasesGenerales.Proveedores JOIN BasesGenerales.StkTipoProveed where Proveedores.ProveedoresTipo = StkTipoProveed.idStkTipoProveed ',
+          'SELECT idProveedores, ProveedoresDesc, StkTipoProveed.StkTipoProveedDesc, ProveedoresTipo, ProveedoresCUIT, ProveedoresCalle, ProveedoresNroCalle, ProveedoresPiso, ProveedoresDto, ProveedoresCodPos, ProveedoresLoc, ProveedoresPcia, ProveedoresTel, ProveedoresContacto, ProveedoresMail, ProveedoresWeb, ProveedoresCodMon FROM BasesGenerales.Proveedores JOIN StkTipoProveed where BasesGenerales.Proveedores.ProveedoresTipo = StkTipoProveed.idStkTipoProveed ',
         function(err, result) {
             if (err) {
                 console.log(err);
