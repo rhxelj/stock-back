@@ -17,7 +17,7 @@ conexion.connect(function(err) {
     }
 });
 
-router.all('/', function(req, res) {
+router.all('/',function(req, res) {
     codgrupo = req.query.id;
     gencodrubro.buscacodigo(codgrupo);
     ultnrorubro.codigorubronuevo(codgrupo);
@@ -26,7 +26,7 @@ router.all('/', function(req, res) {
       StkRubroCodGrp    : codgrupo,
       StkRubroDesc      : req.body.StkRubroDesc.toUpperCase(),
       StkRubroAbr       : req.body.StkRubroAbr.toUpperCase(),
-      StkRubroProv      : req.body.StkRubroProv.toUpperCase(),
+      StkRubroProv      : req.body.StkRubroProv,
       StkRubroAncho     : req.body.StkRubroAncho,
       StkRubroPresDes   : req.body.StkRubroPresDes.toUpperCase(),
       StkRubroPres      : req.body.StkRubroPres,
