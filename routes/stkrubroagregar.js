@@ -17,8 +17,9 @@ conexion.connect(function(err) {
     }
 });
 
-router.all('/',function(req, res) {
+router.all('/', function(req, res) {
     codgrupo = req.query.id;
+  
     gencodrubro.buscacodigo(codgrupo);
     ultnrorubro.codigorubronuevo(codgrupo);
   var registro = {

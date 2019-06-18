@@ -25,5 +25,6 @@ function codigorubronuevo(codigogen) {
       }
     });
     return codrubro;
+    
 }
 exports.codigorubronuevo=codigorubronuevo;
