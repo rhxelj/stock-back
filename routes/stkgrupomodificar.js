@@ -26,7 +26,6 @@ router.post('/', async function(req, res, next) {
  contRubro = req.body.StkGrupoContRubro;
  
  
-console.log('indice  ', indice);
     conexion.query('UPDATE StkGrupo SET StkGrupoDesc = "' + descr + '", StkGrupoAbr = "' + abrev + '", StkGrupoContRubro = '+ contRubro + ' WHERE idStkGrupo = "' + indice + '"',
         function(err, result) {
             if (err) {

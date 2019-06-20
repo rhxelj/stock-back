@@ -36,13 +36,12 @@ router.post('/', async function(req, res) {
         console.log(err);}
     } else {
         res.json(result);
-      console.log(result[0].UltItem);
-      console.log([result]);
       nroitem = result[0].UltItem + 1;
      }
 
      var d = new Date()
-     finalDate = d.toISOString().split('T')[0]+' '+d.toTimeString().split(' ')[0];
+     finalDate = d.toISOString().split('T')[0]
+     //+' '+d.toTimeString().split(' ')[0];
 
       var registro = {
         idStkItems : nroitem,

@@ -38,7 +38,7 @@ router.post('/', function(req, res) {
     ProveedoresWeb : req.body.provpagweb,
     ProveedoresCodMon : req.body.provcodmon
   }
-    console.log(registro);
+  
     var saludo = '';
 
 

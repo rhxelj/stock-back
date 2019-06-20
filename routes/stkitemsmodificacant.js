@@ -28,13 +28,10 @@ var StkItemsGrupo = req.query.id2;
 var StkItemsRubro = req.query.id3;
 var StkItemsCantidad = req.body.StkItemsCantidad;
 var StkItemsObserv = req.body.StkItemsObserv;
-console.log(StkItemsObserv)
-console.log(StkItemsCantidad)
 var d = new Date()
-console.log(' d ' + d);
-finalDate = d.toISOString().split('T')[0]+' '+d.toTimeString().split(' ')[0];
+finalDate = d.toISOString().split('T')[0]
+//+' '+d.toTimeString().split(' ')[0];
 var StkItemsFAct = finalDate;
-console.log(' finalDate ' + finalDate);
 // Desde Postman http://localhost:4000/stkitemsmodificar?id1=1&id2=1&id3=1
  
     conexion.query('UPDATE StkItems SET StkItemsCantidad = ' + StkItemsCantidad + 

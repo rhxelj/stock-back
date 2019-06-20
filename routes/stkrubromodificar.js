@@ -19,6 +19,7 @@ var router = express();
 
 router.post('/', async function(req, res, next) {
 
+
 var idStkRubro = req.query.id;
 var StkRubroCodGrp = req.query.id2;
 var StkRubroDesc = req.body.StkRubroDesc.toUpperCase();
@@ -53,7 +54,8 @@ var StkRubroTM = req.body.StkRubroTM;
                          return res.status(410).send({message : "Texto demasiado largo"});
                         }
                     {
-                        console.log (err.errno);
+                        (err)
+                        //console.log (err.errno);
                     }
                 } else {
                 res.json(result);

@@ -6,9 +6,9 @@ var conexion = require('./conexion');
 
 conexion.connect(function(err) {
     if (!err) {
-        console.log("base de datos conectada en stkitemsmoddisp");
+        console.log("base de datos conectada en stkitemsmodstock");
     } else {
-        console.log("no se conecto en stkitemsmoddisp");
+        console.log("no se conecto en stkitemsmodstock");
     }
 });
 
@@ -26,9 +26,12 @@ var CantDisp = 0.00
 var idStkItems = req.query.id1;
 var StkItemsGrupo = req.query.id2;
 var StkItemsRubro = req.query.id3;
-var StkItemsCantDisp = req.body.StkItemsCantDisp;
-var total = req.body.total;
-CantDisp = Number(StkItemsCantDisp) - total
+var StkRubroPres = req.body.StkRubroPres;
+var cantidad = req.body.cantidad;
+
+var total = Number(cantidad) * Number(StkRubroPres)
+CantDisp = Number(req.body.StkItemsCantDisp) + total
+Cantidads = Number(req.body.StkItemsCantidad) + total
 
 var d = new Date()
 finalDate = d.toISOString().split('T')[0]
@@ -36,16 +39,24 @@ var StkItemsFAct = finalDate;
 // Desde Postman http://localhost:4000/stkitemsmodificar?id1=1&id2=1&id3=1
  
     conexion.query('UPDATE StkItems SET StkItemsCantDisp = ' + CantDisp + 
-                                     ', StkItemsFAct = "'+ StkItemsFAct + 
+                                        ', StkItemsCantidad = ' + Cantidads + 
+                                        ', StkItemsFAct = "'+ StkItemsFAct + 
                                       '" WHERE idStkItems = ' + idStkItems + ' and  StkItemsGrupo = ' + StkItemsGrupo + ' and  StkItemsRubro = ' + StkItemsRubro,
         function(err, result) {
-            if (err) {
-                console.log(err);
-            } else {
-                res.json(result);
-                };
-            });
-        });
-
+            if (err) 
+    {
+   if (err.errno == 1054) 
+        {
+   return res.status(414).send({message : "Faltan datos para ingresar la mercadería"});
+       }
+   else {
+       console.log('error en stkitemsmodstock');
+       console.log(err.errno);
+   }}
+    else {
+       res.json(result.rows);
+   }
+});
+})
 
 module.exports = router;

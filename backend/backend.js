@@ -75,7 +75,7 @@ var stkitemsventa = require('./routes/stkitemsventa'); //una prueba
 var stkmovvtaagregar = require('./routes/stkmovvtaagregar');
 var stkenvaseagregar = require('./routes/stkenvaseagregar');
 var stkenvaseleeimp = require('./routes/stkenvaseleeimp');
-// var clientesleer = require('./routes/clientesleer');
+var clientesleer = require('./routes/clientesleer');
 
 
 // function agregada por el error CROS
@@ -175,7 +175,7 @@ app.use('/stkenvaseleeimp', stkenvaseleeimp);
 // app.use('/imprime1', imprime1);
 app.use('/stkmovvtaagregar', stkmovvtaagregar);
 
-// app.use('/clientesleer', clientesleer);
+app.use('/clientesleer', clientesleer);
 
 app.use(function(req, res, next) {
     var err = new Error('El programa de backend no se encuentra');
