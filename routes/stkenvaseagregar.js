@@ -53,12 +53,13 @@ for (i = 0; i < cantenvases; i++) {
         StkEnvaseItem : StkEnvaseItem,
         StkEnvaseCant : req.body.StkRubroPres,
         StkEnvaseFechaAct : finalDate,
-        StkEnvaseUb : req.body.StkEnvaseUb,
+        StkEnvasePartida : req.body.StkEnvasePartida,
+        StkEnvaseUbG : req.body.StkEnvaseUbG,
+        StkEnvaseUbF : req.body.StkEnvaseUbF,
         StkEnvaseObserv : req.body.StkEnvaseObserv,
         StkEnvaseImprimio : 'N'
     }
-    console.log('registro en envase')
-    console.log(registro)
+   
 
     conexion.query('INSERT INTO StkEnvase SET ?', registro, 
         function(err, result) {

@@ -1,11 +1,11 @@
 var express = require('express');
 var path = require('path');
 var cors = require('cors');
-//var favicon = require('serve-favicon');
-var cors = require ('cors');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+//var favicon = require('serve-favicon');
+// var cors = require ('cors');
 //  var routes = require('./routes/index');
 
 var proveedoresleer = require('./routes/proveedoresleer');
@@ -13,6 +13,7 @@ var proveedoresleercod = require('./routes/proveedoresleercod');
 var proveedoresagregar = require('./routes/proveedoresagregar');
 var proveedoresborrar = require('./routes/proveedoresborrar');
 var proveedoresmodificar = require('./routes/proveedoresmodificar');
+// var proveedoresimprime = require('./routes/proveedoresimprime');
 
 
 var stkmonedasleer = require('./routes/stkmonedasleer');
@@ -41,6 +42,15 @@ var stkgrupoleercod = require('./routes/stkgrupoleercod');
 var stkgrupoagregar = require('./routes/stkgrupoagregar');
 var stkgrupomodificar = require('./routes/stkgrupomodificar');
 var stkgrupoborrar = require('./routes/stkgrupoborrar');
+
+
+// var stkubfisicaleer = require('./routes/stkubfisicaleer');
+// var stkubfisicaleercod = require('./routes/stkubfisicaleercod');
+// var stkubfisicaagregar = require('./routes/stkubfisicaagregar');
+// var stkubfisicamodificar = require('./routes/stkubfisicamodificar');
+// var stkubfisicaborrar = require('./routes/stkubfisicaborrar');
+var stkubfisicaleerUbG = require('./routes/stkubfisicaleerUbG');
+
 
 var stkrubroleer = require('./routes/stkrubroleer');
 var stkrubroleermezcla = require('./routes/stkrubroleermezcla');
@@ -75,7 +85,9 @@ var stkitemsventa = require('./routes/stkitemsventa'); //una prueba
 var stkmovvtaagregar = require('./routes/stkmovvtaagregar');
 var stkenvaseagregar = require('./routes/stkenvaseagregar');
 var stkenvaseleeimp = require('./routes/stkenvaseleeimp');
+// var stkenvasecambiaimp = require('./routes/stkenvasecambiaimp');
 // var clientesleer = require('./routes/clientesleer');
+
 
 
 // function agregada por el error CROS
@@ -114,6 +126,7 @@ app.use('/proveedoresleercod', proveedoresleercod);
 app.use('/proveedoresagregar', proveedoresagregar);
 app.use('/proveedoresmodificar', proveedoresmodificar);
 app.use('/proveedoresborrar', proveedoresborrar);
+// app.use('/proveedoresimprime', proveedoresimprime);
 
 app.use('/stkmonedasleer', stkmonedasleer);
 app.use('/stkmonedasleercod', stkmonedasleercod);
@@ -141,6 +154,13 @@ app.use('/stkgrupoleercod', stkgrupoleercod);
 app.use('/stkgrupoagregar', stkgrupoagregar);
 app.use('/stkgrupomodificar', stkgrupomodificar);
 app.use('/stkgrupoborrar', stkgrupoborrar);
+
+// app.use('/stkubfisicaleer', stkubfisicaleer);
+// app.use('/stkubfisicaleercod', stkubfisicaleercod);
+// app.use('/stkubfisicaagregar', stkubfisicaagregar);
+// app.use('/stkubfisicamodificar', stkubfisicamodificar);
+// app.use('/stkubfisicaborrar', stkubfisicaborrar);
+app.use('/stkubfisicaleerUbG', stkubfisicaleerUbG);
 
 app.use('/stkrubroleer', stkrubroleer);
 app.use('/stkrubroleermezcla', stkrubroleermezcla);
@@ -171,6 +191,7 @@ app.use('/stkitemsmodstock', stkitemsmodstock);
 app.use('/stkitemsventa', stkitemsventa);
 app.use('/stkenvaseagregar', stkenvaseagregar);
 app.use('/stkenvaseleeimp', stkenvaseleeimp);
+// app.use('/stkenvasecambiaimp', stkenvasecambiaimp);
 
 // app.use('/imprime1', imprime1);
 app.use('/stkmovvtaagregar', stkmovvtaagregar);
