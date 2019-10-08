@@ -16,7 +16,7 @@ var router = express();
 
 router.get('/', function(req, res, next) {
   
-    conexion.query('Select StkGrupo.StkGrupoDesc, StkRubroDesc, StkRubroCosto, StkRubroTM, (StkRubroCosto * StkMonedasCotizacion * 2.15) as PPub, (StkRubroCosto * StkMonedasCotizacion * 1.77) as PMay, ((StkRubroCosto * StkMonedasCotizacion * 1.77) + (REPValorMOT/60*1.3)) as PMayPU from StkRubro JOIN StkGrupo, BasesGenerales.Proveedores, StkMonedas, reparacion.parametrosrep where StkRubroCodGrp = idStkGrupo and StkRubroProv = idProveedores and StkRubroTM = idStkMonedas',
+    conexion.query('Select idStkRubro, StkRubroCodGrp, StkGrupo.StkGrupoDesc, StkRubroDesc, StkRubroCosto, StkRubroTM, (StkRubroCosto * StkMonedasCotizacion * 2.15) as PPub, (StkRubroCosto * StkMonedasCotizacion * 1.77) as PMay, ((StkRubroCosto * StkMonedasCotizacion * 1.77) + (REPValorMOT/60*1.3)) as PMayPU, ((StkRubroCosto * StkMonedasCotizacion * 1.77) + (REPValorMOT/60*1.3*2)) as PMayPUR from StkRubro JOIN StkGrupo, BasesGenerales.Proveedores, StkMonedas, reparacion.parametrosrep where StkRubroCodGrp = idStkGrupo and StkRubroProv = idProveedores and StkRubroTM = idStkMonedas',
         function(err, result) {
             if (err) {
                 console.log(err);

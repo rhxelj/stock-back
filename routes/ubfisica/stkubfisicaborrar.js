@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var path = require('path');
 var conexion = require('../conexion');
-var mysql = require('mysql');
 
 var router = express();
 conexion.connect(function(err) {
@@ -13,12 +11,13 @@ conexion.connect(function(err) {
     }
 });
 
+router.all('/', async function(req, res, next) {
+console.log(req.query.idStkUbFisica)
+console.log(req.query.StkUbFisicaGeo)
 
-router.delete('/?:id', function(req, res, next) {
-    indice = req.params.id;
-
-
-  conexion.query('delete from StkUbFisica where idStkUbFisica = "' + indice + '"', 
+    idStkUbFisica1 = req.query.idStkUbFisica;
+   StkUbFisicaGeo1 = req.query.StkUbFisicaGeo;
+  conexion.query('delete from StkUbFisica where idStkUbFisica = "' + idStkUbFisica1 + '" and StkUbFisicaGeo = "' + StkUbFisicaGeo1 + '"', 
                                          function(err, result) {
                                             if (err) {
                                                 if (err.errno == 1451) 

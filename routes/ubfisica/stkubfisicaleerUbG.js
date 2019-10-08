@@ -18,8 +18,10 @@ conexion.connect(function(err) {
 var router = express();
 
 router.get('/', async function(req, res, next) {
-    indice = req.query.id;
-    conexion.query('Select * from StkUbFisica  where StkUbFisicaGeo = "' + indice + '"',
+   StkUbFisicaGeo1 = req.query.id;
+   console.log('req.query.id')
+   console.log(req.query.id)
+    conexion.query('Select * from StkUbFisica  where StkUbFisicaGeo = "' + StkUbFisicaGeo1 + '"', 
         function(err, result) {
             if (err) {
                 console.log(err);

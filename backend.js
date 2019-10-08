@@ -42,9 +42,9 @@ var stkgrupoborrar = require('./routes/grupos/stkgrupoborrar');
 
 
 var stkubfisicaleer = require('./routes/ubfisica/stkubfisicaleer');
-var stkubfisicaleercod = require('./routes/ubfisica/stkubfisicaleercod');
+// var stkubfisicaleercod = require('./routes/ubfisica/stkubfisicaleercod');
 var stkubfisicaagregar = require('./routes/ubfisica/stkubfisicaagregar');
-var stkubfisicamodificar = require('./routes/ubfisica/stkubfisicamodificar');
+// var stkubfisicamodificar = require('./routes/ubfisica/stkubfisicamodificar');
 var stkubfisicaborrar = require('./routes/ubfisica/stkubfisicaborrar');
 var stkubfisicaleerUbG = require('./routes/ubfisica/stkubfisicaleerUbG');
 
@@ -73,10 +73,13 @@ var stkitemsleedetalles = require('./routes/items/stkitemsleedetalles');
 
 var stkitemsmodificacant = require('./routes/items/stkitemsmodificacant');
 var stkitemsmoddisp = require('./routes/items/stkitemsmoddisp');
-var stkverificadisp = require('./routes/movimientos/stkverificadisp');
 var stkitemsmodstock = require('./routes/items/stkitemsmodstock');
 
 var stkitemsventa = require('./routes/items/stkitemsventa'); //una prueba
+
+var stkverificadisp = require('./routes/movimientos/stkverificadisp');
+var stkmovsalfinal = require('./routes/movimientos/stkmovsalfinal');
+var stkmovenvase = require('./routes/movimientos/stkmovenvase');
 
 var stkmovvtaagregar = require('./routes/envase/stkmovvtaagregar');
 var stkenvaseagregar = require('./routes/envase/stkenvaseagregar');
@@ -151,9 +154,9 @@ app.use('/stkgrupomodificar', stkgrupomodificar);
 app.use('/stkgrupoborrar', stkgrupoborrar);
 
 app.use('/stkubfisicaleer', stkubfisicaleer);
-app.use('/stkubfisicaleercod', stkubfisicaleercod);
+// app.use('/stkubfisicaleercod', stkubfisicaleercod);
 app.use('/stkubfisicaagregar', stkubfisicaagregar);
-app.use('/stkubfisicamodificar', stkubfisicamodificar);
+// app.use('/stkubfisicamodificar', stkubfisicamodificar);
 app.use('/stkubfisicaborrar', stkubfisicaborrar);
 app.use('/stkubfisicaleerUbG', stkubfisicaleerUbG);
 
@@ -181,7 +184,12 @@ app.use('/stkitemsleedetalles', stkitemsleedetalles);
 app.use('/stkitemsmodificacant', stkitemsmodificacant);
 app.use('/stkitemsmoddisp', stkitemsmoddisp);
 app.use('/stkverificadisp', stkverificadisp);
+
+
+
 app.use('/stkitemsmodstock', stkitemsmodstock);
+app.use('/stkmovsalfinal', stkmovsalfinal);
+app.use('/stkmovenvase', stkmovenvase);
 
 app.use('/stkitemsventa', stkitemsventa);
 app.use('/stkenvaseagregar', stkenvaseagregar);
