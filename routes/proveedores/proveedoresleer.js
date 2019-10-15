@@ -24,7 +24,7 @@ router.get('/', function(req, res, next) {
 // en el mysql tuve que cambiar la clave foránea porque no me permitía cambiar el tipodeproveedor en la tabla proveedores
       conexion.query(
           //'SELECT idProveedores, ProveedoresDesc, StkTipoProveed.StkTipoProveedDesc, ProveedoresTipo, ProveedoresCUIT, ProveedoresCalle, ProveedoresNroCalle, ProveedoresPiso, ProveedoresDto, ProveedoresCodPos, ProveedoresLoc, ProveedoresPcia, ProveedoresTel, ProveedoresContacto, ProveedoresMail, ProveedoresWeb, ProveedoresCodMon FROM BasesGenerales.Proveedores JOIN StkTipoProveed where BasesGenerales.Proveedores.ProveedoresTipo = StkTipoProveed.idStkTipoProveed ',
-          'SELECT idProveedores, ProveedoresDesc, SubRubros.SubRubroDetalle , ProveedoresTipo, ProveedoresCUIT, ProveedoresCalle, ProveedoresNroCalle, ProveedoresPiso, ProveedoresDto, ProveedoresCodPos, ProveedoresLoc, ProveedoresPcia, ProveedoresTel, ProveedoresContacto, ProveedoresMail, ProveedoresWeb, ProveedoresCodMon FROM BasesGenerales.Proveedores JOIN BasesGenerales.SubRubros where BasesGenerales.Proveedores.ProveedoresTipo = BasesGenerales.SubRubros.idSubRubro ',
+          'SELECT idProveedores, ProveedoresDesc, SubRubros.SubRubroDetalle , ProveedoresTipo, ProveedoresCUIT, ProveedoresCalle, ProveedoresNroCalle, ProveedoresPiso, ProveedoresDto, ProveedoresCodPos, ProveedoresLoc, ProveedoresPcia, ProveedoresTel, ProveedoresContacto, ProveedoresMail, ProveedoresWeb, ProveedoresCodMon FROM BasesGenerales.Proveedores JOIN BasesGenerales.SubRubros where BasesGenerales.Proveedores.ProveedoresTipo = BasesGenerales.SubRubros.idSubRubro order by ProveedoresDesc',
         function(err, result) {
             if (err) {
                 console.log(err);
